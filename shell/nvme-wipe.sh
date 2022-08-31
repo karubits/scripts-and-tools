@@ -15,8 +15,7 @@
 # ⚠ CAUTION ⚠ This is a desturctive process. Ensure you have enter the correct disk. 
 
 
-# 💠 A few prequisties based on using a live Ubuntu distribution#!/bin/bash
-sudo fwupdmgr get-updates -y
+# 💠 A few prequisties based on using a live Ubuntu distribution
 sudo apt update
 sudo apt install nvme-cli -y
 clear
