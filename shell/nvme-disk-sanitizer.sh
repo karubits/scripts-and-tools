@@ -7,7 +7,7 @@
 #
 # How to use:
 #	To erase multiple disks
-#	./nvme-disk-sanitizer.sh nvme0n1
+#	./nvme-disk-sanitizer.sh  nvme0n1 nvme1n1
 #
 #	To erase a single disk:
 #	./nvme-disk-sanitizer.sh nvme0n1
