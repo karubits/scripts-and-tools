@@ -3,20 +3,19 @@
 # Author: Karubits
 # Date Created: 31/8/2022
 # Description:
-# A script for securely erasing SATA disks and generate a report including serial number, firmware, and disk health. 
-# 
-# How to use: 
+# A script for securely erase SATA disk drives, update firmeware, run a health check, and generating a report.
+#
+# How to use:
 #	To erase multiple disks
-#	./sata_wipe.sh sda sdb 
+#	./sata-disk-sanitizer.sh sda sdb
 #
 #	To erase a single disk:
 #	./sata_wipe.sh sda
 #
-# ⚠ CAUTION ⚠ This is a desturctive process. Ensure you have enter the correct disk. 
+# ⚠ CAUTION ⚠ This is a desturctive process. Ensure you have enter the correct disk.
 
 
 # 💠 A few prequisties based on using a live Ubuntu distribution
-
 echo "Installing prerequisites..."
 fwupdmgr get-updates -y
 sudo apt update
@@ -33,9 +32,9 @@ do
 	echo "☢ Targeting $DISK for desctruction..."
 	echo "☢ $(lsblk /dev/$DISK -o model,serial | tail -n +2 | sed 's/^[ \t]*//;s/[ \t]*$//') $(hdparm -I /dev/$DISK | grep Firmware | sed 's/^[ \t]*//;s/[ \t]*$//')"
 	echo "------------------------------"
-	echo " " 
+	echo " "
 	# Check to see if the disk is frozen
-	if [[ $(hdparm -I /dev/$DISK | grep "not	frozen") ]]; 
+	if [[ $(hdparm -I /dev/$DISK | grep "not	frozen") ]];
 		then
 			echo "✅ Disk is not frozen. Continuing..."
 			echo "------------------------------"
@@ -46,7 +45,7 @@ do
 
 			echo "🔹Now performing secure erase..."
 
-			# The spec requires setting a password before been able to use secure-erase. The password is cleared with the next command. 
+			# The spec requires setting a password before been able to use secure-erase. The password is cleared with the next command.
 			sudo hdparm --user-master u --security-set-pass password /dev/$DISK
 			sudo hdparm --user-master u --security-erase-enhanced password /dev/$DISK
 			echo "------------------------------"
@@ -96,12 +95,3 @@ do
 	echo " "
 	echo "🏁 $DISK Done"
 done
-
-
-
-
-
-
-
-
-

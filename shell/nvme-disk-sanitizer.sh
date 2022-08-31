@@ -3,16 +3,16 @@
 # Author: Karubits
 # Date Created: 31/8/2022
 # Description:
-# A script for securely erasing NVME disks and generate a report including serial number, firmware, and disk health. 
-# 
-# How to use: 
+# A script for securely erase NVME disk drives, updating firmeware, and generating a report.
+#
+# How to use:
 #	To erase multiple disks
-#	./nvme_wipe.sh nvme0n1
+#	./nvme-disk-sanitizer.sh nvme0n1
 #
 #	To erase a single disk:
-#	./nvme_wipe.sh nvme0n1
+#	./nvme-disk-sanitizer.sh nvme0n1
 #
-# ⚠ CAUTION ⚠ This is a desturctive process. Ensure you have enter the correct disk. 
+# ⚠ CAUTION ⚠ This is a desturctive process. Ensure you have enter the correct disk.
 
 
 # 💠 A few prequisties based on using a live Ubuntu distribution
@@ -56,7 +56,7 @@ do
     echo " " >> $DISK_FILE
     date >> $DISK_FILE
     echo " " >> $DISK_FILE
-    echo $DISK_MS >> $DISK_FILE 
+    echo $DISK_MS >> $DISK_FILE
     echo " " >> $DISK_FILE
     sudo nvme list | grep Node >> $DISK_FILE
     sudo nvme list | grep $DISK >> $DISK_FILE
